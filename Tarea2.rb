@@ -16,7 +16,20 @@ post '/instagram/tag/buscar' do
 
 	begin
 		status = 200
-		datos = open('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + access_token + '')
-		return datos
+		#datos = open('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + access_token + '')
+		#datos1 = open('https://api.instagram.com/v1/tags/' + tag + '?access_token=' + access_token + '')
+		datos1 = File.read('../prueba1.json')
+		datos1_hash = JSON.parse(datos1)
+		total = datos1_hash['data']['media_count'].to_s
+		datos = File.read('../prueba.json')
+		datos_hash = JSON.parse(datos)
+		tags = ''
+		#datos_hash['data'].each do |tag|
+		#	tags = tags + ',' + tag['tags']
+		#end
+		result = {'metadata' => {'total' => total}, 'posts' => {'tags' => ''}}
+		result['posts'].update({'tags' => 'hola'})
+		result['posts'].update({'tags' => 'chao'})
+		return result.to_json
 	end
 end
