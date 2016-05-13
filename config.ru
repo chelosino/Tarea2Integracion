@@ -1,2 +1,2 @@
-require './number_cruncher'
+require './Tarea2'
 run Sinatra::Application
