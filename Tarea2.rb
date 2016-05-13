@@ -35,7 +35,7 @@ post '/instagram/tag/buscar' do
 		datos_hash = JSON.parse(datos)
 		result = {'metadata' => {'total' => total}, 'posts' => [], 'version' => version}
 
-		for i in 0..3
+		for i in 0..19
 			result['posts'] << {'tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''}
 
 			tags = datos_hash['data'][i]['tags']
