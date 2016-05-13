@@ -20,14 +20,20 @@ post '/instagram/tag/buscar' do
 
 	begin
 		status = 200
-		datos = open('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + access_token + '').read
-		datos1 = open('https://api.instagram.com/v1/tags/' + tag + '?access_token=' + access_token + '').read
-		#datos1 = File.read('../prueba1.json')
+		#datos = open('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + access_token + '').read
+		#datos1 = open('https://api.instagram.com/v1/tags/' + tag + '?access_token=' + access_token + '').read
+		commit = open('https://api.github.com/repos/chelosino/Tarea2Integracion/git/refs/heads/master').read
+		datos1 = File.read('../prueba1.json')
 		datos1_hash = JSON.parse(datos1)
 		total = datos1_hash['data']['media_count'].to_s
-		#datos = File.read('../prueba.json')
+		commit_hash = JSON.parse(commit)
+		url = commit_hash['object']['url']
+		commit1 = open(url).read
+		commit1_hash = JSON.parse(commit1)
+		version = commit1_hash['message'].to_s
+		datos = File.read('../prueba.json')
 		datos_hash = JSON.parse(datos)
-		result = {'metadata' => {'total' => total}, 'posts' => [], 'version' => '1.0.0'}
+		result = {'metadata' => {'total' => total}, 'posts' => [], 'version' => version}
 
 		for i in 0..3
 			result['posts'] << {'tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''}
