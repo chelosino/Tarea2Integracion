@@ -20,16 +20,18 @@ post '/instagram/tag/buscar' do
 
 	begin
 		status = 200
-		#datos = open('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + access_token + '')
-		#datos1 = open('https://api.instagram.com/v1/tags/' + tag + '?access_token=' + access_token + '')
-		datos1 = File.read('../prueba1.json')
+		datos = open('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + access_token + '').read
+		datos1 = open('https://api.instagram.com/v1/tags/' + tag + '?access_token=' + access_token + '').read
+		#datos1 = File.read('../prueba1.json')
 		datos1_hash = JSON.parse(datos1)
 		total = datos1_hash['data']['media_count'].to_s
-		datos = File.read('../prueba.json')
+		#datos = File.read('../prueba.json')
 		datos_hash = JSON.parse(datos)
-		result = {'metadata' => {'total' => total}, 'posts' => ['tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''], 'version' => '1.0.0'}
+		result = {'metadata' => {'total' => total}, 'posts' => [], 'version' => '1.0.0'}
 
 		for i in 0..3
+			result['posts'] << {'tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''}
+
 			tags = datos_hash['data'][i]['tags']
 			tags.each do |tag|
 				result['posts'][i]['tags'] << tag
@@ -47,8 +49,6 @@ post '/instagram/tag/buscar' do
 
 			caption = datos_hash['data'][i]['caption']
 			result['posts'][i]['caption'] = caption['text']
-		
-			result['posts'] << {'tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''}
 		end
 		return result.to_json
 	end
