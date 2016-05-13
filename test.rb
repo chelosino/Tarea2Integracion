@@ -1,9 +1,12 @@
 ENV['RACK_ENV'] = 'test'
 require 'minitest/autorun'
 require 'rack/test'
+require 'coveralls'
 require_relative 'Tarea2.rb'
 
 include Rack::Test::Methods
+
+Coveralls.wear!
 
 def app
   Sinatra::Application
