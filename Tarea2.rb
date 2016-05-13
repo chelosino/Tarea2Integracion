@@ -36,7 +36,7 @@ post '/instagram/tag/buscar' do
 		result = {'metadata' => {'total' => total}, 'posts' => [], 'version' => version}
 
 		for i in 0..19
-			result['posts'] << {'tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''}
+			result['posts'] << {'tags' => [], 'username' => '', 'likes' => ''.to_i, 'url' => '', 'caption' => ''}
 
 			tags = datos_hash['data'][i]['tags']
 			tags.each do |tag|
@@ -47,7 +47,7 @@ post '/instagram/tag/buscar' do
 			result['posts'][i]['username'] << user['username']
 		
 			likes = datos_hash['data'][i]['likes']
-			result['posts'][i]['likes'] << likes['count'].to_i
+			result['posts'][i]['likes'] = likes['count'].to_i
 		
 			images = datos_hash['data'][i]['images']
 			standard = images['standard_resolution']
