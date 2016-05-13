@@ -27,19 +27,29 @@ post '/instagram/tag/buscar' do
 		total = datos1_hash['data']['media_count'].to_s
 		datos = File.read('../prueba.json')
 		datos_hash = JSON.parse(datos)
-		#tags = ''
-		#datos_hash['data'].each do |tag|
-		#	tags = tags + ',' + tag['tags']
-		#end
-		result = {'metadata' => {'total' => total}, 'posts' => [{'tags' => []}, {'username' => ''}, {'likes' => ''}, {'url' => ''}, {'caption' => ''}], 'version' => '1.0.0'}
-		#for i in 0..19
-		#	tags = datos_hash['data'][i]['tags']
-		#	tags.each do |tag|
-		#		result['posts'][i]['tags'] << tag
-		#	end
-		#end
-		#result['posts']['tags'] << 'hola'
-		#result['posts']['tags'] << 'chao'
+		result = {'metadata' => {'total' => total}, 'posts' => ['tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''], 'version' => '1.0.0'}
+
+		for i in 0..3
+			tags = datos_hash['data'][i]['tags']
+			tags.each do |tag|
+				result['posts'][i]['tags'] << tag
+			end
+		
+			user = datos_hash['data'][i]['user']
+			result['posts'][i]['username'] << user['username']
+		
+			likes = datos_hash['data'][i]['likes']
+			result['posts'][i]['likes'] << likes['count'].to_i
+		
+			images = datos_hash['data'][i]['images']
+			standard = images['standard_resolution']
+			result['posts'][i]['url'] << standard['url']
+
+			caption = datos_hash['data'][i]['caption']
+			result['posts'][i]['caption'] = caption['text']
+		
+			result['posts'] << {'tags' => [], 'username' => '', 'likes' => '', 'url' => '', 'caption' => ''}
+		end
 		return result.to_json
 	end
 end
