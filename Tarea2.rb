@@ -6,6 +6,10 @@ get '/' do
 	return 'Hello World!'
 end
 
+get '/hola' do
+	return 'chao'
+end
+
 post '/instagram/tag/buscar' do
 	tag = params['tag']
 	access_token = params['access_token']
@@ -28,11 +32,10 @@ post '/instagram/tag/buscar' do
 		#	tags = tags + ',' + tag['tags']
 		#end
 		result = {'metadata' => {'total' => total}, 'posts' => [{'tags' => []}, {'username' => ''}, {'likes' => ''}, {'url' => ''}, {'caption' => ''}], 'version' => '1.0.0'}
-		#{'tags' => []}
-		#datos_hash['data'].each do |item|
-		#	tags = item['tags']
+		#for i in 0..19
+		#	tags = datos_hash['data'][i]['tags']
 		#	tags.each do |tag|
-		#		result['posts']['tags'] << tag
+		#		result['posts'][i]['tags'] << tag
 		#	end
 		#end
 		#result['posts']['tags'] << 'hola'
