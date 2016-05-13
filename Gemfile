@@ -7,4 +7,5 @@ gem 'travis'
 group :test do
   gem "rack-test"
   gem "rake"
+  gem "minitest"
 end
