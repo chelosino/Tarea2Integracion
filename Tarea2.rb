@@ -23,13 +23,20 @@ post '/instagram/tag/buscar' do
 		total = datos1_hash['data']['media_count'].to_s
 		datos = File.read('../prueba.json')
 		datos_hash = JSON.parse(datos)
-		tags = ''
+		#tags = ''
 		#datos_hash['data'].each do |tag|
 		#	tags = tags + ',' + tag['tags']
 		#end
-		result = {'metadata' => {'total' => total}, 'posts' => {'tags' => ''}}
-		result['posts'].update({'tags' => 'hola'})
-		result['posts'].update({'tags' => 'chao'})
+		result = {'metadata' => {'total' => total}, 'posts' => [{'tags' => []}, {'username' => ''}, {'likes' => ''}, {'url' => ''}, {'caption' => ''}], 'version' => '1.0.0'}
+		#{'tags' => []}
+		#datos_hash['data'].each do |item|
+		#	tags = item['tags']
+		#	tags.each do |tag|
+		#		result['posts']['tags'] << tag
+		#	end
+		#end
+		#result['posts']['tags'] << 'hola'
+		#result['posts']['tags'] << 'chao'
 		return result.to_json
 	end
 end
