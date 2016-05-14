@@ -20,6 +20,7 @@ post '/instagram/tag/buscar' do
 
 	begin
 		status = 200
+		headers["Content-Type"] = 'application/json'
 		datos = open('https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + access_token + '').read
 		datos1 = open('https://api.instagram.com/v1/tags/' + tag + '?access_token=' + access_token + '').read
 		commit = open('https://api.github.com/repos/chelosino/Tarea2Integracion/git/refs/heads/master').read
