@@ -37,6 +37,12 @@ describe "Tarea2" do
   #  six_info.to_json.must_equal last_response.body
   #end
 
+  it "should retun 200" do
+    post "/instagram/tag/buscar?tag=santiago&access_token=2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402"
+    status = 200
+    status.must_equal last_response.status
+  end
+
   it "should return 400" do
     post "/instagram/tag/buscar"
     status = 400
@@ -47,12 +53,6 @@ describe "Tarea2" do
     get '/hola'
     info = 'chao'
     info.must_equal last_response.body
-  end
-
-  it "should retun 200" do
-    post "/instagram/tag/buscar?tag=santiago&access_token=2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402"
-    status = 200
-    status.must_equal last_response.status
   end
 
 end
