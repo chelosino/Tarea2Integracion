@@ -9,4 +9,5 @@ group :test do
   gem "rake"
   gem "minitest"
   gem 'coveralls', require: false
+  gem 'codecov', :require => false
 end
