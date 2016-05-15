@@ -38,7 +38,7 @@ describe "Tarea2" do
   #end
 
   it "should retun 200" do
-    post "/"
+    get "/"
     status = 200
     status.must_equal last_response.status
   end
