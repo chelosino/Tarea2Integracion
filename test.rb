@@ -2,11 +2,14 @@ ENV['RACK_ENV'] = 'test'
 require 'minitest/autorun'
 require 'rack/test'
 require 'coveralls'
+require 'simplecov'
+SimpleCov.start
+
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
 require_relative 'Tarea2.rb'
 
 include Rack::Test::Methods
-
-Coveralls.wear!
 
 def app
   Sinatra::Application
@@ -54,5 +57,7 @@ describe "Tarea2" do
     info = 'chao'
     info.must_equal last_response.body
   end
+
+  Coveralls.wear!
 
 end

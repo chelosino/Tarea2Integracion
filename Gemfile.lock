@@ -3,6 +3,10 @@ GEM
   specs:
     addressable (2.4.0)
     backports (3.6.8)
+    codecov (0.1.4)
+      json
+      simplecov
+      url
     coveralls (0.8.13)
       json (~> 1.8)
       simplecov (~> 0.11.0)
@@ -67,12 +71,14 @@ GEM
       typhoeus (~> 0.6, >= 0.6.8)
     typhoeus (0.8.0)
       ethon (>= 0.8.0)
+    url (0.3.2)
     websocket (1.2.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  codecov
   coveralls
   json
   minitest
