@@ -2,6 +2,11 @@ ENV['RACK_ENV'] = 'test'
 require 'minitest/autorun'
 require 'rack/test'
 require 'coveralls'
+require 'simplecov'
+SimpleCov.start
+
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
 require_relative 'Tarea2.rb'
 
 include Rack::Test::Methods
