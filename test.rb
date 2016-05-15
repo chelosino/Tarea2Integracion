@@ -38,7 +38,7 @@ describe "Tarea2" do
   #end
 
   it "should retun 200" do
-    post "/instagram/tag/buscar?tag=santiago&access_token=2019746130.59a3f2b.86a0135240404ed5b908a14c0a2d9402"
+    post "/"
     status = 200
     status.must_equal last_response.status
   end
