@@ -6,8 +6,6 @@ require_relative 'Tarea2.rb'
 
 include Rack::Test::Methods
 
-Coveralls.wear!
-
 def app
   Sinatra::Application
 end
@@ -54,5 +52,7 @@ describe "Tarea2" do
     info = 'chao'
     info.must_equal last_response.body
   end
+
+  Coveralls.wear!
 
 end
